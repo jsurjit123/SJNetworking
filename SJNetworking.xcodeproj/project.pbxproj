@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		1611A9251FEFA287006094FD /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1611A9241FEFA287006094FD /* AppDelegate.m */; };
 		1611A9281FEFA287006094FD /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1611A9271FEFA287006094FD /* ViewController.m */; };
-		1611A92B1FEFA287006094FD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1611A9291FEFA287006094FD /* Main.storyboard */; };
 		1611A92D1FEFA287006094FD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1611A92C1FEFA287006094FD /* Assets.xcassets */; };
 		1611A9301FEFA287006094FD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1611A92E1FEFA287006094FD /* LaunchScreen.storyboard */; };
 		1611A9331FEFA287006094FD /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1611A9321FEFA287006094FD /* main.m */; };
@@ -21,7 +20,6 @@
 		1611A9241FEFA287006094FD /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		1611A9261FEFA287006094FD /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		1611A9271FEFA287006094FD /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		1611A92A1FEFA287006094FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		1611A92C1FEFA287006094FD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		1611A92F1FEFA287006094FD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		1611A9311FEFA287006094FD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -62,7 +60,6 @@
 				1611A9241FEFA287006094FD /* AppDelegate.m */,
 				1611A9261FEFA287006094FD /* ViewController.h */,
 				1611A9271FEFA287006094FD /* ViewController.m */,
-				1611A9291FEFA287006094FD /* Main.storyboard */,
 				1611A92C1FEFA287006094FD /* Assets.xcassets */,
 				1611A92E1FEFA287006094FD /* LaunchScreen.storyboard */,
 				1611A9311FEFA287006094FD /* Info.plist */,
@@ -102,7 +99,7 @@
 				TargetAttributes = {
 					1611A91F1FEFA287006094FD = {
 						CreatedOnToolsVersion = 9.1;
-						ProvisioningStyle = Automatic;
+						ProvisioningStyle = Manual;
 					};
 				};
 			};
@@ -131,7 +128,6 @@
 			files = (
 				1611A9301FEFA287006094FD /* LaunchScreen.storyboard in Resources */,
 				1611A92D1FEFA287006094FD /* Assets.xcassets in Resources */,
-				1611A92B1FEFA287006094FD /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,14 +147,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		1611A9291FEFA287006094FD /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				1611A92A1FEFA287006094FD /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		1611A92E1FEFA287006094FD /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -278,12 +266,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XNBEBD7E4B;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = C7S77V33DR;
 				INFOPLIST_FILE = SJNetworking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Test.Test.SJNetworking;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Knorr-Bremse.Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "041da608-6e49-4f02-9583-ccc3fc673aec";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Test";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -292,12 +282,14 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XNBEBD7E4B;
+				CODE_SIGN_STYLE = Manual;
+				DEVELOPMENT_TEAM = C7S77V33DR;
 				INFOPLIST_FILE = SJNetworking/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Test.Test.SJNetworking;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Knorr-Bremse.Test";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "041da608-6e49-4f02-9583-ccc3fc673aec";
+				PROVISIONING_PROFILE_SPECIFIER = "Dev Test";
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
