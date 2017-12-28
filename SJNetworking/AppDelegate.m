@@ -17,9 +17,39 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    self.window.backgroundColor = [UIColor whiteColor];
+    self.window.clipsToBounds = NO;
+    [self.window makeKeyAndVisible];
+    
     return YES;
 }
 
+#pragma mark - Window
+
+- (UIWindow *)window
+{
+    if (!_window)
+    {
+        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+        _window.rootViewController = self.rootViewController;
+    }
+    
+    return _window;
+}
+
+#pragma mark - RootViewController
+
+- (UIViewController *)rootViewController
+{
+    if (!_rootViewController)
+    {
+        _rootViewController = [[ViewController alloc] init];
+    }
+    
+    return _rootViewController;
+}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
