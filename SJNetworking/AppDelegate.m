@@ -13,43 +13,108 @@
 @end
 
 @implementation AppDelegate
-
+@synthesize dataStorage_AllRows;
+@synthesize screenWidth, screenHeight;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    _rootViewController = [[ViewController alloc] init];
+    self.navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
+    self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor] CGColor];
+    self.navigationController.navigationBar.layer.shadowOffset = CGSizeMake(0.0, 3);
+    self.navigationController.navigationBar.layer.shadowOpacity = 0.25;
+    self.navigationController.navigationBar.layer.masksToBounds = NO;
+    self.navigationController.navigationBar.layer.shouldRasterize = YES;
+    self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:128.00/255.00 green:163.00/255.00 blue:194.00/255.00 alpha:1.0];
+    
+    // check current OS version
+    if([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7)
+    {
+        // iOS7+ comes with new design of Navigation bar which includes Status bar in it
+        // So, we have to specify the background color, appearance effect, font etc for Navigation bar
+        
+        self.navigationController.navigationBar.translucent = NO;
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:128.00/255.00 green:163.00/255.00 blue:194.00/255.00 alpha:1.0]];;
+        
+        NSDictionary *attributes = [NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName, nil];
+        [[UINavigationBar appearance] setTitleTextAttributes:attributes];
+        
+        [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:[NSDictionary dictionaryWithObjectsAndKeys:[UIColor whiteColor], NSForegroundColorAttributeName,nil] forState:UIControlStateNormal];
+        [self.navigationController.navigationBar setTintColor:[UIColor whiteColor]];
+        
+        NSDictionary *attributes1 = [NSDictionary dictionaryWithObjectsAndKeys:[UIFont fontWithName:@"HelveticaNeue-Bold" size:17], NSFontAttributeName, [UIColor whiteColor], NSForegroundColorAttributeName, nil];
+        [[UINavigationBar appearance] setTitleTextAttributes:attributes1];
+    }
+    
+    _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.clipsToBounds = NO;
+    self.window.rootViewController = self.navigationController;
+
     [self.window makeKeyAndVisible];
     
+    [self getScreenResolution];
+//    // add device orientatio listener
+//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
+//    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(getScreenResolution)    name:UIDeviceOrientationDidChangeNotification  object:nil];
+    
+    self.dataStorage_AllRows = [[DataStorage_AllRows alloc] init];
+        
     return YES;
 }
 
-#pragma mark - Window
-
-- (UIWindow *)window
+-(void) getScreenResolution
 {
-    if (!_window)
-    {
-        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-        _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-        _window.rootViewController = self.rootViewController;
-    }
+    CGRect screenBound = [[UIScreen mainScreen] bounds];
+    CGSize screenSize = screenBound.size;
     
-    return _window;
+    if([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
+    {
+        if (screenSize.width > screenSize.height)
+        {
+            self.screenHeight = screenSize.width;
+            self.screenWidth = screenSize.height;
+        }
+        else
+        {
+            self.screenHeight = screenSize.height;
+            self.screenWidth = screenSize.width;
+        }
+    }
+    else
+    {
+        self.screenHeight = screenSize.height;
+        self.screenWidth = screenSize.width;
+    }
 }
 
-#pragma mark - RootViewController
-
-- (UIViewController *)rootViewController
-{
-    if (!_rootViewController)
-    {
-        _rootViewController = [[ViewController alloc] init];
-    }
-    
-    return _rootViewController;
-}
+//#pragma mark - Window
+//
+//- (UIWindow *)window
+//{
+//    if (!_window)
+//    {
+//        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
+//        _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
+//        _window.rootViewController = self.rootViewController;
+//    }
+//
+//    return _window;
+//}
+//
+//#pragma mark - RootViewController
+//
+//- (UIViewController *)rootViewController
+//{
+//    if (!_rootViewController)
+//    {
+//        _rootViewController = [[ViewController alloc] init];
+//    }
+//
+//    return _rootViewController;
+//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.

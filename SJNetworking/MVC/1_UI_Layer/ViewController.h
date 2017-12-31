@@ -7,9 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "DataHandler.h"
+#import "AppMacros.h"
 
-@interface ViewController : UIViewController
+@interface ViewController : UITableViewController
 
+
+@property (nonatomic, retain) DataHandler *dataHandler;
+
+-(CGFloat) calculateHeightForRow : (NSIndexPath *) indexPath;
 
 @end
 

@@ -8,12 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ViewController.h"
+#import "DataStorage_AllRows.h"
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (nonatomic, strong) UIViewController *rootViewController;
+@property (nonatomic, strong) ViewController *rootViewController;
+@property (nonatomic, strong) UINavigationController *navigationController;
 
+@property (nonatomic, retain) DataStorage_AllRows *dataStorage_AllRows;
+
+// Object to store screen's height and width
+@property CGFloat screenWidth, screenHeight;
+
+-(void) getScreenResolution;
 
 @end
 

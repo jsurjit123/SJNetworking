@@ -7,7 +7,15 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "DataProvider.h"
+
 
 @interface DataHandler : NSObject
+{
+
+}
+
+@property (nonatomic, retain) DataProvider *dataProvider;
+
 
 @end
