@@ -6,22 +6,33 @@
 //  Copyright © 2017 Surjit Joshi. All rights reserved.
 //
 
+/******************************************************************************
+ *                                     Header Files
+ ******************************************************************************/
+
 #import <Foundation/Foundation.h>
 
+/******************************************************************************
+ *                                     Interface Declaration
+ ******************************************************************************/
+
 @interface DataProvider : NSObject <NSURLConnectionDelegate>
-{
-    NSURLConnection *theConnection;
-    
-}
+
+/******************************************************************************
+ *           Public Variables
+ ******************************************************************************/
 
 @property (nonatomic, retain) NSString *urlForWebService;
-@property (nonatomic, retain) NSMutableData *receivedData;
+@property (nonatomic, copy) void (^completionHandler)(void);
+
+/******************************************************************************
+ *           Public Methods/Functions
+ ******************************************************************************/
 
 -(id)initWithURLStr:(NSString *)objectURLStr;
 -(void)startUpdating;
 -(void)stopUpdating;
 
-@property (nonatomic, copy) void (^completionHandler)(void);
 
 
 @end

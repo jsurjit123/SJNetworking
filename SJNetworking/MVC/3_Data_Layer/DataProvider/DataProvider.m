@@ -6,13 +6,34 @@
 //  Copyright © 2017 Surjit Joshi. All rights reserved.
 //
 
+/******************************************************************************
+ *                                     Header Files
+ ******************************************************************************/
+
 #import "DataProvider.h"
 
+/******************************************************************************
+ *                                     Interface Definition
+ ******************************************************************************/
+
 @implementation DataProvider
-
 @synthesize urlForWebService;
-@synthesize receivedData;
 
+/*
+ * Function Name        : initWithURLStr
+ *
+ * Author               : Surjit Joshi
+ *
+ * Description          : Start download for JSON data
+ *
+ * Detailed description : -
+ *
+ * ParaIn               : objectURLStr - URL for request
+ *
+ * ParaOut              : -
+ *
+ * Return               : -
+ */
 
 -(id)initWithURLStr:(NSString *)objectURLStr
 {
@@ -28,13 +49,25 @@
     return self;
 }
 
+/*
+ * Function Name        : startUpdating
+ *
+ * Author               : Surjit Joshi
+ *
+ * Description          : Start download for JSON data
+ *
+ * Detailed description : -
+ *
+ * ParaIn               : -
+ *
+ * ParaOut              : -
+ *
+ * Return               : -
+ */
+
 // this method called to start retrieving data from URL
 -(void)startUpdating
 {
-    // Create the NSMutableData to hold the received data.
-    // receivedData is an instance variable declared elsewhere.
-    self.receivedData = [NSMutableData dataWithCapacity: 0];
-    
     // Create the request.
     NSURLRequest *theGETRequest = [NSURLRequest requestWithURL:
                      [NSURL URLWithString:self.urlForWebService]
@@ -76,8 +109,7 @@
 // this method called to stop retrieving data from URL
 -(void)stopUpdating
 {
-    theConnection = nil;
-    self.receivedData = nil;
+    
 }
 
 @end
