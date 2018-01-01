@@ -6,19 +6,69 @@
 //  Copyright © 2017 Surjit Joshi. All rights reserved.
 //
 
+/******************************************************************************
+ *                                     Header Files
+ ******************************************************************************/
+
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
-
-@end
+/******************************************************************************
+ *                                     Interface Declaration
+ ******************************************************************************/
 
 @implementation AppDelegate
 @synthesize dataStorage_AllRows;
 @synthesize screenWidth, screenHeight;
 
+/*
+ * Function Name        : didFinishLaunchingWithOptions
+ *
+ * Author               : Surjit Joshi
+ *
+ * Description          : -
+ *
+ * Detailed description : -
+ *
+ * ParaIn               : -
+ *
+ * ParaOut              : -
+ *
+ * Return               : -
+ */
+
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
     
+    // initialize window, rootviewcontroller and navigation controller
+    [self initializeWindowWithNavigationController];
+    
+    // get resolution of screen
+    [self getScreenResolution];
+    
+    // initialize storage for JSON data
+    self.dataStorage_AllRows = [[DataStorage_AllRows alloc] init];
+        
+    return YES;
+}
+
+/*
+ * Function Name        : initializeWindowWithNavigationController
+ *
+ * Author               : Surjit Joshi
+ *
+ * Description          : Initialize window, rootviewcontroller and navigation controller
+ *
+ * Detailed description : -
+ *
+ * ParaIn               : -
+ *
+ * ParaOut              : -
+ *
+ * Return               : -
+ */
+
+-(void) initializeWindowWithNavigationController
+{
     _rootViewController = [[ViewController alloc] init];
     self.navigationController = [[UINavigationController alloc] initWithRootViewController:_rootViewController];
     self.navigationController.navigationBar.layer.shadowColor = [[UIColor blackColor] CGColor];
@@ -29,7 +79,7 @@
     self.navigationController.navigationBar.tintColor = [UIColor colorWithRed:128.00/255.00 green:163.00/255.00 blue:194.00/255.00 alpha:1.0];
     
     // check current OS version
-    if([[[UIDevice currentDevice] systemVersion] doubleValue] >= 7)
+    if(iOS_Version >= 7)
     {
         // iOS7+ comes with new design of Navigation bar which includes Status bar in it
         // So, we have to specify the background color, appearance effect, font etc for Navigation bar
@@ -47,30 +97,38 @@
         [[UINavigationBar appearance] setTitleTextAttributes:attributes1];
     }
     
+    // window
     _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
     _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
     self.window.backgroundColor = [UIColor whiteColor];
     self.window.clipsToBounds = NO;
     self.window.rootViewController = self.navigationController;
-
+    
     [self.window makeKeyAndVisible];
-    
-    [self getScreenResolution];
-//    // add device orientatio listener
-//    [[UIDevice currentDevice] beginGeneratingDeviceOrientationNotifications];
-//    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(getScreenResolution)    name:UIDeviceOrientationDidChangeNotification  object:nil];
-    
-    self.dataStorage_AllRows = [[DataStorage_AllRows alloc] init];
-        
-    return YES;
 }
+
+/*
+ * Function Name        : getScreenResolution
+ *
+ * Author               : Surjit Joshi
+ *
+ * Description          : Get resolution of screen
+ *
+ * Detailed description : -
+ *
+ * ParaIn               : -
+ *
+ * ParaOut              : -
+ *
+ * Return               : -
+ */
 
 -(void) getScreenResolution
 {
     CGRect screenBound = [[UIScreen mainScreen] bounds];
     CGSize screenSize = screenBound.size;
     
-    if([[[UIDevice currentDevice] systemVersion] doubleValue] >= 8.0)
+    if(iOS_Version >= 8.0)
     {
         if (screenSize.width > screenSize.height)
         {
@@ -89,32 +147,6 @@
         self.screenWidth = screenSize.width;
     }
 }
-
-//#pragma mark - Window
-//
-//- (UIWindow *)window
-//{
-//    if (!_window)
-//    {
-//        _window = [[UIWindow alloc] initWithFrame:[UIScreen mainScreen].bounds];
-//        _window.tintAdjustmentMode = UIViewTintAdjustmentModeNormal;
-//        _window.rootViewController = self.rootViewController;
-//    }
-//
-//    return _window;
-//}
-//
-//#pragma mark - RootViewController
-//
-//- (UIViewController *)rootViewController
-//{
-//    if (!_rootViewController)
-//    {
-//        _rootViewController = [[ViewController alloc] init];
-//    }
-//
-//    return _rootViewController;
-//}
 
 - (void)applicationWillResignActive:(UIApplication *)application {
     // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
